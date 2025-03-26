@@ -133,3 +133,6 @@ dmypy.json
 .pyre/
 /.ruff_cache/
 /node_modules
+.qodo
+
+uploads/
