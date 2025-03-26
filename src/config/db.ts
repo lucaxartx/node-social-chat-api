@@ -3,11 +3,11 @@ import settings from './settings';
 
 
 const connectDB = async (): Promise<void> => {
-    try{
+    try {
         await mongoose.connect(settings.MONGO_URI);
 
-          console.log("Connected to Mongo=>");
-    }catch(error) {
+        console.log("Connected to Mongo=>");
+    } catch (error) {
         console.error('Connection failed', error);
     }
 }
