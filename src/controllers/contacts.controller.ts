@@ -6,20 +6,20 @@ import ContactRequestModel from '../models/friendReq.model';
 
 export const getContacts = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        if (!req.user) {
-            res.status(401).json({ message: 'User not authenticated' });
-            return;
-        }
+        // if (!req.user) {
+        //     res.status(401).json({ message: 'User not authenticated' });
+        //     return;
+        // }
 
 
 
 
         const user = await UserModel.findById(req.user.userId)
             .populate('contacts', 'username email ');
-        if (!user) {
-            throw new Error('user not found')
+        // if (!user) {
+        //     throw new Error('user not found')
 
-        }
+        // }
         // Add a null check for user
         if (!user) {
             res.status(StatusCodes.NOT_FOUND).json({ message: 'User not found' });
@@ -36,8 +36,8 @@ export const getContactById = async (req: AuthRequest, res: Response): Promise<v
         const { id: userId } = req.params;
         const user = await UserModel.findById(req.user.userId);
 
-        if (!user.contacts.includes(userId)) {
-            res.status(StatusCodes.FORBIDDEN).json({ message: 'Not in your contacts' });
+        if (!user) {
+            res.status(StatusCodes.NOT_FOUND).json({ message: 'User not found' });
             return;
         }
 
@@ -95,7 +95,9 @@ export const getContactRequests = async (req: AuthRequest, res: Response): Promi
 
         res.status(StatusCodes.OK).json(requests);
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Error fetching requests' });
+        console.log(error);
+
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Error fetching requests', error });
     }
 };
 
