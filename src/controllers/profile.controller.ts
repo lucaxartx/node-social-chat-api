@@ -3,7 +3,7 @@ import UserModel from '../models/user.model';
 import { StatusCodes } from 'http-status-codes';
 import { AuthRequest } from '../middlewares/auth';
 import cloudinary from '../utils/cloudinary.utils'
-import upload from '../middlewares/mutler'
+
 export const getProfile = async (req: AuthRequest, res: Response): Promise<any> => {
     try {
 
