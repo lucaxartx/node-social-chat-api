@@ -136,3 +136,6 @@ dmypy.json
 .qodo
 
 uploads/
+
+# Code Citations file
+src/# Code Citations.md

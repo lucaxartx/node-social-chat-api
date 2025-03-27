@@ -5,6 +5,9 @@ import authRoutes from './routes/user.route'
 import { errorHandler } from './middlewares/errorHandler';
 import profileRoutes from './routes/profile.route'
 
+import contactRoutes from './routes/contacts.route';
+
+
 connectDB();
 
 const app = express();
@@ -15,6 +18,7 @@ app.use(express.urlencoded({ extended: false })) //handle form data like the pho
 
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes)
+app.use('/api/contacts', contactRoutes);
 
 
 app.get('/', (req, res) => {
