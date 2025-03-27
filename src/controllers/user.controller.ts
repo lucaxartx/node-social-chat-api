@@ -131,3 +131,16 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
         });
     }
 };
+
+
+
+
+export const allUsers = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const users = await UserModel.find();
+        res.status(StatusCodes.OK).json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
+    }
+};
